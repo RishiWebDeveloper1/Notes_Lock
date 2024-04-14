@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futuristic Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="megacontainer" id="newUserPage">
+        <div class="container">
+            <div class="password-box">
+                <div class="new-password-text">
+                    New Password
+                </div>
+                <div class="input-box">
+                    <div class="input">
+                        <input type="password" value="9321763573" name="password" id="newPasswordInput">
+                    </div>
+                </div>
+            </div>
+            <div class="password-box">
+                <div class="confirm-password-text">
+                    Confirm Password
+                </div>
+                <div class="input-box">
+                    <div class="input">
+                        <input type="password" value="56115611" name="password" id="confirmPasswordInput">
+                    </div>
+                </div>
+            </div>
+            <div class="show-password-box">
+                <div class="check">
+                    <input type="checkbox" name="passwordCheck" id="passwordsCheck" onclick="showPasswords()">
+                </div>
+                <div class="show-password-text">
+                    Show Password
+                </div>
+            </div>
+            <div class="save-password-box">
+                <div class="save-password-text" onclick="savePassword()">
+                    Save Password
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="megacontainer" id="unlockPage">
+        <div class="container">
+            <div class="input-box">
+                <div class="input">
+                    <input type="password" value="56115611" name="password" id="passwordInput">
+                </div>
+            </div>
+            <div class="show-password-box">
+                <div class="check">
+                    <input type="checkbox" name="passwordCheck" id="passwordCheck" onclick="showPassword()">
+                </div>
+                <div class="show-password-text">
+                    Show Password
+                </div>
+            </div>
+            <div class="login-button-box">
+                <div class="login-button" onclick="unlock()">
+                    Unlock
+                </div>
+            </div>
+            <div class="forget-password-box">
+                <div class="forget-password-text" onclick="forgetPassword()">
+                    Forget Password?
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="megacontainer" id="NotesLockPage">
+        <div class="lock" onclick="lock()">
+            lock</div>
+    </div>
+
+    <script>
+        let newUserPage = document.getElementById("newUserPage");
+        let unlockPage = document.getElementById("unlockPage");
+        let NotesLockPage = document.getElementById("NotesLockPage");
+        let passwordCheck = document.getElementById("passwordCheck");
+        var passwordInput = document.getElementById("passwordInput");
+        let passwordsCheck = document.getElementById("passwordsCheck");
+        var newPasswordInput = document.getElementById("newPasswordInput");
+        var confirmPasswordInput = document.getElementById("confirmPasswordInput");
+        
+        newUserPage.style.display = "block";
+        unlockPage.style.display = "none";
+        NotesLockPage.style.display = "none";
+
+        function showPassword() {
+            console.log(passwordCheck.checked)
+            if (passwordCheck.checked == true) {
+                passwordInput.type = "text";
+            } else {
+                passwordInput.type = "password";
+            }
+        }
+        
+        function showPasswords() {
+            console.log(passwordsCheck.checked)
+            if (passwordsCheck.checked == true) {
+                newPasswordInput.type = "text";
+                confirmPasswordInput.type = "text";
+            } else {
+                newPasswordInput.type = "password";
+                confirmPasswordInput.type = "password";
+            }
+        }
+
+        function savePassword() {
+            newUserPage.style.display = "none";
+            unlockPage.style.display = "block";
+            NotesLockPage.style.display = "none";
+        }
+
+        function forgetPassword() {
+            newUserPage.style.display = "block";
+            unlockPage.style.display = "none";
+            NotesLockPage.style.display = "none";
+        }
+
+        function unlock() {
+            newUserPage.style.display = "none";
+            unlockPage.style.display = "none";
+            NotesLockPage.style.display = "block";
+        }
+
+        function lock() {
+            newUserPage.style.display = "none";
+            unlockPage.style.display = "block";
+            NotesLockPage.style.display = "none";
+        }
+    </script>
+</body>
+
+</html>
+
+<!-- "~!@#$%^&*()_+{}:"<>?QWERTYUIOPASDFGHJKLZXCVBNM|}{:><>?":`1234567890-=]\]['/.;.,qwertyuiopasdfghjklzxcvbnm']"} -->

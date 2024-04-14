@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Web</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        input[type="password"], button {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        input[type="password"] {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        #loginForm {
+            display: none;
+        }
+
+        #whatsappWeb {
+            display: none;
+        }
+
+        #whatsappWeb iframe {
+            width: 100%;
+            height: calc(100vh - 120px);
+            border: none;
+        }
+
+        @media screen and (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="setupPassword">
+            <h1>Set up Password</h1>
+            <input type="password" id="newPassword" placeholder="Enter new password" required>
+            <br>
+            <input type="password" id="confirmPassword" placeholder="Confirm new password" required>
+            <br>
+            <button onclick="confirmPassword()">Confirm</button>
+        </div>
+
+        <div id="loginForm">
+            <h1>Login</h1>
+            <input type="password" id="password" placeholder="Enter password" required>
+            <br>
+            <button onclick="login()">Login</button>
+        </div>
+
+        <div id="whatsappWeb">
+            <iframe src="https://web.whatsapp.com/" frameborder="0"></iframe>
+        </div>
+    </div>
+
+    <script>
+        function confirmPassword() {
+            var newPassword = document.getElementById("newPassword").value;
+            var confirmPassword = document.getElementById("confirmPassword").value;
+            if (newPassword === confirmPassword) {
+                document.getElementById("setupPassword").style.display = "none";
+                document.getElementById("loginForm").style.display = "block";
+            } else {
+                alert("Passwords do not match. Please try again.");
+            }
+        }
+
+        function login() {
+            var enteredPassword = document.getElementById("password").value;
+            var storedPassword = localStorage.getItem("password");
+            if (enteredPassword === storedPassword) {
+                document.getElementById("loginForm").style.display = "none";
+                document.getElementById("whatsappWeb").style.display = "block";
+            } else {
+                alert("Incorrect password. Please try again.");
+            }
+        }
+
+        window.onload = function() {
+            if (!localStorage.getItem("password")) {
+                document.getElementById("setupPassword").style.display = "block";
+            } else {
+                document.getElementById("loginForm").style.display = "block";
+            }
+        };
+    </script>
+</body>
+</html>
