@@ -13,17 +13,17 @@
     <div class="megacontainer" id="newUserPage">
         <div class="container">
             <div class="password-box">
-                <div class="new-password-text">
+                <div class="password-text">
                     New Password
                 </div>
                 <div class="input-box">
                     <div class="input">
-                        <input type="password" value="9321763573" name="password" id="newPasswordInput">
+                        <input type="password" value="56115611" name="password" id="newPasswordInput">
                     </div>
                 </div>
             </div>
             <div class="password-box">
-                <div class="confirm-password-text">
+                <div class="password-text">
                     Confirm Password
                 </div>
                 <div class="input-box">
@@ -82,16 +82,17 @@
     </div>
 
     <script>
+        // document.addEventListener('contextmenu', (e) => e. preventDefault());
         let newUserPage = document.getElementById("newUserPage");
         let unlockPage = document.getElementById("unlockPage");
         let NotesLockPage = document.getElementById("NotesLockPage");
-        let passwordCheck = document.getElementById("passwordCheck");
-        var passwordInput = document.getElementById("passwordInput");
-        let passwordsCheck = document.getElementById("passwordsCheck");
         var newPasswordInput = document.getElementById("newPasswordInput");
         var confirmPasswordInput = document.getElementById("confirmPasswordInput");
+        let passwordsCheck = document.getElementById("passwordsCheck");
+        var passwordInput = document.getElementById("passwordInput");
+        let passwordCheck = document.getElementById("passwordCheck");
         
-        newUserPage.style.display = "block";
+        newUserPage.style.display = "flex";
         unlockPage.style.display = "none";
         NotesLockPage.style.display = "none";
 
@@ -116,13 +117,18 @@
         }
 
         function savePassword() {
-            newUserPage.style.display = "none";
-            unlockPage.style.display = "block";
-            NotesLockPage.style.display = "none";
+            if (newPasswordInput.value == confirmPasswordInput.value) {
+                newUserPage.style.display = "none";
+                unlockPage.style.display = "flex";
+                NotesLockPage.style.display = "none";
+            }
+            else {
+                alert("New and Confirm both Password are not same");
+            }
         }
 
         function forgetPassword() {
-            newUserPage.style.display = "block";
+            newUserPage.style.display = "flex";
             unlockPage.style.display = "none";
             NotesLockPage.style.display = "none";
         }
@@ -135,7 +141,7 @@
 
         function lock() {
             newUserPage.style.display = "none";
-            unlockPage.style.display = "block";
+            unlockPage.style.display = "flex";
             NotesLockPage.style.display = "none";
         }
     </script>
