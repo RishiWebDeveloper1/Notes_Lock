@@ -17,9 +17,7 @@
                     New Password
                 </div>
                 <div class="input-box">
-                    <div class="input">
-                        <input type="password" value="56115611" name="password" id="newPasswordInput">
-                    </div>
+                    <input class="input" type="password" value="56115611" name="password" id="newPasswordInput">
                 </div>
             </div>
             <div class="password-box">
@@ -27,9 +25,7 @@
                     Confirm Password
                 </div>
                 <div class="input-box">
-                    <div class="input">
-                        <input type="password" value="56115611" name="password" id="confirmPasswordInput">
-                    </div>
+                    <input class="input" type="password" value="56115611" name="password" id="confirmPasswordInput">
                 </div>
             </div>
             <div class="show-password-box">
@@ -91,7 +87,7 @@
         let passwordsCheck = document.getElementById("passwordsCheck");
         var passwordInput = document.getElementById("passwordInput");
         let passwordCheck = document.getElementById("passwordCheck");
-        
+
         newUserPage.style.display = "flex";
         unlockPage.style.display = "none";
         NotesLockPage.style.display = "none";
@@ -104,7 +100,7 @@
                 passwordInput.type = "password";
             }
         }
-        
+
         function showPasswords() {
             console.log(passwordsCheck.checked)
             if (passwordsCheck.checked == true) {
