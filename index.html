@@ -28,6 +28,22 @@
                     <input class="input" type="password" value="56115611" name="password" id="confirmPasswordInput">
                 </div>
             </div>
+            <div class="password-box">
+                <div class="password-text">
+                    Backup Question
+                </div>
+                <div class="input-box">
+                    <input class="input" type="text" value="who is god" name="question" id="questionInput">
+                </div>
+            </div>
+            <div class="password-box">
+                <div class="password-text">
+                    Backup Answer
+                </div>
+                <div class="input-box">
+                    <input class="input" type="password" value="Rishi" name="answer" id="answerInput">
+                </div>
+            </div>
             <div class="show-password-box">
                 <div class="check">
                     <input type="checkbox" name="passwordCheck" id="passwordsCheck" onclick="showPasswords()">
@@ -82,11 +98,14 @@
             <div class="notes-box">
                 <div class="notes-text" id="notesText" contenteditable="false">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum quasi harum iusto hic aliquid et
-                    similique enim sint alias beatae quae dolor ipsa error asperiores pariatur possimus quisquam deleniti
+                    similique enim sint alias beatae quae dolor ipsa error asperiores pariatur possimus quisquam
+                    deleniti
                     earum commodi, necessitatibus nisi fugit accusamus facilis ducimus! Neque, aperiam illo! Odio quis
-                    itaque necessitatibus alias saepe facere error vero eligendi earum eaque accusantium laboriosam impedit
+                    itaque necessitatibus alias saepe facere error vero eligendi earum eaque accusantium laboriosam
+                    impedit
                     asperiores nisi aliquam, placeat, tenetur culpa. Quibusdam modi esse, numquam enim magnam maxime
-                    expedita eos nostrum nihil, sapiente sit odit fugiat temporibus? Earum animi, facere atque illum, veniam
+                    expedita eos nostrum nihil, sapiente sit odit fugiat temporibus? Earum animi, facere atque illum,
+                    veniam
                     aliquam at debitis ipsum, mollitia excepturi magnam! Eum tempore ducimus, sed dicta ab reiciendis
                     distinctio quisquam nihil.
                 </div>
@@ -116,13 +135,22 @@
         var newPasswordInput = document.getElementById("newPasswordInput");
         var confirmPasswordInput = document.getElementById("confirmPasswordInput");
         let passwordsCheck = document.getElementById("passwordsCheck");
+        var questionInput = document.getElementById("questionInput");
+        var answerInput = document.getElementById("answerInput");
         var passwordInput = document.getElementById("passwordInput");
         let passwordCheck = document.getElementById("passwordCheck");
         let editText = document.getElementById("notesText");
 
         newUserPage.style.display = "none";
-        unlockPage.style.display = "none";
-        NotesLockPage.style.display = "flex";
+        unlockPage.style.display = "flex";
+        NotesLockPage.style.display = "none";
+
+        
+        if (localStorage.getItem("password") == null) {
+            newUserPage.style.display = "flex";
+            unlockPage.style.display = "none";
+            NotesLockPage.style.display = "none";
+        }
 
         function showPassword() {
             console.log(passwordCheck.checked)
@@ -149,6 +177,9 @@
                 alert("Password can not be Empty!");
             }
             else if (newPasswordInput.value == confirmPasswordInput.value) {
+                localStorage.setItem("password", newPasswordInput.value);
+                localStorage.setItem("question", questionInput.value);
+                localStorage.setItem("answer", answerInput.value);
                 newUserPage.style.display = "none";
                 unlockPage.style.display = "flex";
                 NotesLockPage.style.display = "none";
@@ -161,17 +192,28 @@
         }
 
         function forgetPassword() {
-            newUserPage.style.display = "flex";
-            unlockPage.style.display = "none";
-            NotesLockPage.style.display = "none";
-            passwordInput.value = "";
+            let answerMatch = prompt(localStorage.getItem("question"));
+            if (localStorage.getItem("answer") == answerMatch) {
+                newUserPage.style.display = "flex";
+                unlockPage.style.display = "none";
+                NotesLockPage.style.display = "none";
+                passwordInput.value = "";
+            }
+            else {
+                alert("Wrong answer!")
+            }
         }
 
         function unlock() {
-            newUserPage.style.display = "none";
-            unlockPage.style.display = "none";
-            NotesLockPage.style.display = "flex";
-            passwordInput.value = "";
+            if (passwordInput.value == localStorage.getItem("password")) {
+                newUserPage.style.display = "none";
+                unlockPage.style.display = "none";
+                NotesLockPage.style.display = "flex";
+                passwordInput.value = "";
+            }
+            else {
+                alert("You Entered Invalid password!");
+            }
         }
 
         function lock() {
