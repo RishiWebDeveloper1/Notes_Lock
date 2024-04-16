@@ -58,7 +58,7 @@ html {
 }
 
 .password-text {
-    padding: 5px 0 5px 0;
+    padding: 5px 0 5px 3px;
 }
 
 /* .input-box {
@@ -76,7 +76,13 @@ html {
 .show-password-box {
     padding: 10px;
     display: flex;
+    justify-content: end;
     align-items: center;
+    align-items: center;
+}
+
+.show-password-text {
+    font-size: 17px;
 }
 
 #passwordsCheck, #passwordCheck{
@@ -88,20 +94,113 @@ html {
 .button {
     padding: 10px;
     margin-top: 70px;
-    color: black;
+    color: rgb(255, 255, 255);
     background-color: rgb(0, 255, 0);
     box-shadow: 0 0 5px 5px rgb(0, 255, 187);
-    font-size: 20px;
-    font-weight: bolder;
     border-radius: 10px;
     text-align: center;
 }
 
+.save-password-text {
+    font-size: 22px;
+    font-weight: bolder;
+}
+
+.unlock-button-text {
+    font-size: 22px;
+    font-weight: bolder;
+}
+
 .forget-password-box {
-    color: black;
+    color: rgb(49, 49, 49);
     margin-top: 130px;
 }
 
 .forget-password-box:hover {
     color: blue;
+}
+
+/* ********************** app style *************************** */
+
+.megacontainer-notes {
+    display: flex;
+    flex-direction: column;
+}
+
+.all-notes {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.notes-box {
+    width: 90%;
+    height: 100px;
+    padding: 10px 0 10px 10px;
+    margin: 10px 0 10px 0;
+    color: black;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.notes-text {
+    width: 80%;
+    height: 100%;
+    overflow: scroll;
+}
+
+.button-box {
+    width: 15%;
+    box-shadow: -6px 0 0 -5px black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.edit-text-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#edit-text-icon {
+    width: 90%;
+    max-width: 40px;
+}
+
+.delete-text-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#delete-text-icon {
+    fill: red; 
+    width: 85%;
+    max-width: 40px;
+}
+
+.new-text-box {
+    width: 100px;
+    height: 100px;
+    color: white;
+    background-color: red;
+    border-radius: 1000px;
+    font-size: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    right: 1%;
+    bottom: 10px;
+    margin: 20px;
 }

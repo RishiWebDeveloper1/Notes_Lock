@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Futuristic Login</title>
+    <title>Notes Lock</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -36,8 +36,8 @@
                     Show Password
                 </div>
             </div>
-            <div class="save-password-box button">
-                <div class="save-password-text" onclick="savePassword()">
+            <div class="save-password-box button" onclick="savePassword()">
+                <div class="save-password-text">
                     Save Password
                 </div>
             </div>
@@ -51,7 +51,8 @@
                     Enter Password
                 </div>
                 <div class="input-box">
-                    <input class="input" type="password" value="56115611" name="password" id="passwordInput" placeholder="Enter Password">
+                    <input class="input" type="password" value="56115611" name="password" id="passwordInput"
+                        placeholder="Enter Password">
                 </div>
             </div>
             <div class="show-password-box">
@@ -62,8 +63,8 @@
                     Show Password
                 </div>
             </div>
-            <div class="login-button-box button">
-                <div class="login-button" onclick="unlock()">
+            <div class="unlock-button-box button">
+                <div class="unlock-button-text" onclick="unlock()">
                     Unlock
                 </div>
             </div>
@@ -75,9 +76,36 @@
         </div>
     </div>
 
-    <div class="megacontainer" id="NotesLockPage">
-        <div class="lock" onclick="lock()">
-            lock</div>
+    <div class="megacontainer-notes" id="NotesLockPage">
+        <div class="lock" onclick="lock()">lock</div>
+        <div class="all-notes" id="allNotes">
+            <div class="notes-box">
+                <div class="notes-text" id="notesText" contenteditable="false">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum quasi harum iusto hic aliquid et
+                    similique enim sint alias beatae quae dolor ipsa error asperiores pariatur possimus quisquam deleniti
+                    earum commodi, necessitatibus nisi fugit accusamus facilis ducimus! Neque, aperiam illo! Odio quis
+                    itaque necessitatibus alias saepe facere error vero eligendi earum eaque accusantium laboriosam impedit
+                    asperiores nisi aliquam, placeat, tenetur culpa. Quibusdam modi esse, numquam enim magnam maxime
+                    expedita eos nostrum nihil, sapiente sit odit fugiat temporibus? Earum animi, facere atque illum, veniam
+                    aliquam at debitis ipsum, mollitia excepturi magnam! Eum tempore ducimus, sed dicta ab reiciendis
+                    distinctio quisquam nihil.
+                </div>
+                <div class="button-box">
+                    <div class="edit-text-box">
+                        <img src="images\edit-pencil-01-svgrepo-com.svg" alt="" id="edit-text-icon"
+                            onclick="editNotesText()">
+                    </div>
+                    <div class="delete-text-box">
+                        <img src="images\delete_text_icon.svg" alt="" id="delete-text-icon" onclick="deleteNotesText()">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="new-text-box">
+            <div class="new-text" onclick="addNewNote()">
+                New Text
+            </div>
+        </div>
     </div>
 
     <script>
@@ -90,10 +118,11 @@
         let passwordsCheck = document.getElementById("passwordsCheck");
         var passwordInput = document.getElementById("passwordInput");
         let passwordCheck = document.getElementById("passwordCheck");
+        let editText = document.getElementById("notesText");
 
-        newUserPage.style.display = "flex";
-        unlockPage.style.display = "flex";
-        NotesLockPage.style.display = "none";
+        newUserPage.style.display = "none";
+        unlockPage.style.display = "none";
+        NotesLockPage.style.display = "flex";
 
         function showPassword() {
             console.log(passwordCheck.checked)
@@ -116,32 +145,104 @@
         }
 
         function savePassword() {
-            if (newPasswordInput.value == confirmPasswordInput.value) {
+            if (newPasswordInput.value == "") {
+                alert("Password can not be Empty!");
+            }
+            else if (newPasswordInput.value == confirmPasswordInput.value) {
                 newUserPage.style.display = "none";
                 unlockPage.style.display = "flex";
                 NotesLockPage.style.display = "none";
             }
             else {
-                alert("New and Confirm both Password are not same");
+                alert("New and Confirm both Password are not same!");
             }
+            newPasswordInput.value = "";
+            confirmPasswordInput.value = "";
         }
 
         function forgetPassword() {
             newUserPage.style.display = "flex";
             unlockPage.style.display = "none";
             NotesLockPage.style.display = "none";
+            passwordInput.value = "";
         }
 
         function unlock() {
             newUserPage.style.display = "none";
             unlockPage.style.display = "none";
             NotesLockPage.style.display = "flex";
+            passwordInput.value = "";
         }
 
         function lock() {
             newUserPage.style.display = "none";
             unlockPage.style.display = "flex";
             NotesLockPage.style.display = "none";
+        }
+
+        function editNotesText() {
+            let editTextIcon = document.getElementById("edit-text-icon");
+            if (editText.contentEditable == "true") {
+                editTextIcon.src = "images/edit-pencil-01-svgrepo-com.svg";
+                editTextIcon.style.width = "100%";
+                editText.contentEditable = "false";
+            }
+            else {
+                editTextIcon.src = "images/save_text_icon.svg";
+                editTextIcon.style.width = "40%";
+                editText.contentEditable = "true";
+                // editTextIcon.fo
+            }
+        }
+
+        function deleteNotesText() {
+            editText.innerHTML = "";
+        }
+
+        function addNewNote() {
+            // Create a new notes box container
+            var notesBox = document.createElement("div");
+            notesBox.classList.add("notes-box");
+
+            // Create notes text element
+            var notesText = document.createElement("div");
+            notesText.classList.add("notes-text");
+            notesText.setAttribute("contenteditable", "false");
+            notesText.textContent = "New notes";
+
+            // Create button box container
+            var buttonBox = document.createElement("div");
+            buttonBox.classList.add("button-box");
+
+            // Create edit text button
+            var editButton = document.createElement("div");
+            editButton.classList.add("edit-text-box");
+            var editIcon = document.createElement("img");
+            editIcon.id = "edit-text-icon";
+            editIcon.src = "images/edit-pencil-01-svgrepo-com.svg";
+            editIcon.alt = "Edit";
+            editIcon.onclick = editNotesText;
+            editButton.appendChild(editIcon);
+
+            // Create delete text button
+            var deleteButton = document.createElement("div");
+            deleteButton.classList.add("delete-text-box");
+            var deleteIcon = document.createElement("img");
+            deleteIcon.id = "delete-text-icon";
+            deleteIcon.src = "images/delete_text_icon.svg";
+            deleteIcon.alt = "Delete";
+            deleteIcon.onclick = deleteNotesText;
+            deleteButton.appendChild(deleteIcon);
+
+            // Append elements to their respective containers
+            buttonBox.appendChild(editButton);
+            buttonBox.appendChild(deleteButton);
+            notesBox.appendChild(notesText);
+            notesBox.appendChild(buttonBox);
+
+            // Append the new notes box to the container
+            var container = document.getElementById("allNotes");
+            container.appendChild(notesBox);
         }
     </script>
 </body>
