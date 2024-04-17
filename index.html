@@ -17,7 +17,7 @@
                     New Password
                 </div>
                 <div class="input-box">
-                    <input class="input" type="password" value="56115611" name="password" id="newPasswordInput">
+                    <input class="input" type="password" value="" name="password" id="newPasswordInput">
                 </div>
             </div>
             <div class="password-box">
@@ -25,7 +25,7 @@
                     Confirm Password
                 </div>
                 <div class="input-box">
-                    <input class="input" type="password" value="56115611" name="password" id="confirmPasswordInput">
+                    <input class="input" type="password" value="" name="password" id="confirmPasswordInput">
                 </div>
             </div>
             <div class="password-box">
@@ -33,7 +33,7 @@
                     Backup Question
                 </div>
                 <div class="input-box">
-                    <input class="input" type="text" value="who is god" name="question" id="questionInput">
+                    <input class="input" type="text" value="" name="question" id="questionInput">
                 </div>
             </div>
             <div class="password-box">
@@ -41,7 +41,7 @@
                     Backup Answer
                 </div>
                 <div class="input-box">
-                    <input class="input" type="password" value="Rishi" name="answer" id="answerInput">
+                    <input class="input" type="password" value="" name="answer" id="answerInput">
                 </div>
             </div>
             <div class="show-password-box">
@@ -79,8 +79,8 @@
                     Show Password
                 </div>
             </div>
-            <div class="unlock-button-box button">
-                <div class="unlock-button-text" onclick="unlock()">
+            <div class="unlock-button-box button" onclick="unlock()">
+                <div class="unlock-button-text">
                     Unlock
                 </div>
             </div>
@@ -111,8 +111,7 @@
                 </div>
                 <div class="button-box">
                     <div class="edit-text-box">
-                        <img src="images\edit-pencil-01-svgrepo-com.svg" alt="" id="edit-text-icon"
-                            onclick="editNotesText()">
+                        <img src="images\edit_text_icon.svg" alt="" id="edit-text-icon" onclick="editNotesText()">
                     </div>
                     <div class="delete-text-box">
                         <img src="images\delete_text_icon.svg" alt="" id="delete-text-icon" onclick="deleteNotesText()">
@@ -139,16 +138,17 @@
         var answerInput = document.getElementById("answerInput");
         var passwordInput = document.getElementById("passwordInput");
         let passwordCheck = document.getElementById("passwordCheck");
-        let editText = document.getElementById("notesText");
+        let notesText = document.getElementById("notesText");
 
-        newUserPage.style.display = "none";
-        unlockPage.style.display = "flex";
-        NotesLockPage.style.display = "none";
 
-        
         if (localStorage.getItem("password") == null) {
             newUserPage.style.display = "flex";
             unlockPage.style.display = "none";
+            NotesLockPage.style.display = "none";
+        }
+        else {
+            newUserPage.style.display = "none";
+            unlockPage.style.display = "flex";
             NotesLockPage.style.display = "none";
         }
 
@@ -210,6 +210,7 @@
                 unlockPage.style.display = "none";
                 NotesLockPage.style.display = "flex";
                 passwordInput.value = "";
+                loadNotes();
             }
             else {
                 alert("You Entered Invalid password!");
@@ -222,23 +223,28 @@
             NotesLockPage.style.display = "none";
         }
 
+        function loadNotes() {
+            notesText.innerHTML = localStorage.getItem("notes1");
+        }
+
         function editNotesText() {
             let editTextIcon = document.getElementById("edit-text-icon");
-            if (editText.contentEditable == "true") {
-                editTextIcon.src = "images/edit-pencil-01-svgrepo-com.svg";
+            if (notesText.contentEditable == "true") {
+                localStorage.setItem("notes1", notesText.innerText);
+                editTextIcon.src = "images/edit_text_icon.svg";
                 editTextIcon.style.width = "100%";
-                editText.contentEditable = "false";
+                notesText.contentEditable = "false";
             }
             else {
                 editTextIcon.src = "images/save_text_icon.svg";
                 editTextIcon.style.width = "40%";
-                editText.contentEditable = "true";
-                // editTextIcon.fo
+                notesText.contentEditable = "true";
             }
         }
 
         function deleteNotesText() {
-            editText.innerHTML = "";
+            notesText.innerHTML = "";
+            localStorage.setItem("notes1", notesText.innerText);
         }
 
         function addNewNote() {
@@ -286,6 +292,20 @@
             var container = document.getElementById("allNotes");
             container.appendChild(notesBox);
         }
+
+        let obj = {
+            "notes1": "lpoghftjhdrdghk",
+            "notes2": "ghffukftcjhfthhg",
+            "notes3": "gtchgfcghv"
+        }
+        console.log(obj);
+        obj2 = JSON.stringify(obj);
+        console.log(obj2)
+        obj3 = JSON.parse(obj2)
+        console.log(obj3)
+        localStorage.setItem("allnotes", obj2);
+
+        
     </script>
 </body>
 
