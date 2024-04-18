@@ -1,5 +1,5 @@
 document.querySelector('meta[name="theme-color"]').setAttribute('content', 'red');
-document.addEventListener('contextmenu', (e) => e. preventDefault());
+// document.addEventListener('contextmenu', (e) => e. preventDefault());
 let newUserPage = document.getElementById("newUserPage");
 let unlockPage = document.getElementById("unlockPage");
 let NotesLockPage = document.getElementById("NotesLockPage");
