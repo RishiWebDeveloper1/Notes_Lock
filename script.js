@@ -12,7 +12,7 @@ var passwordInput = document.getElementById("passwordInput");
 let passwordCheck = document.getElementById("passwordCheck");
 let notesText = document.getElementById("notesText");
 
-if (atob(localStorage.getItem(btoa("password"))) == null) {
+if (localStorage.getItem(btoa("password")) == null) {
     newUserPage.style.display = "flex";
     unlockPage.style.display = "none";
     NotesLockPage.style.display = "none";
