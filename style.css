@@ -153,15 +153,19 @@ html {
     height: 100%;
     padding-right: 10px;
     display: flex;
-    justify-content: end; 
+    justify-content: end;
     display: flex;
     align-items: center;
+}
+
+.component-box {
+    padding-right: 10px;
 }
 
 .component {
     width: 35px;
     height: 35px;
-    padding-right: 10px;
+
 }
 
 .megacontainer-notes {
