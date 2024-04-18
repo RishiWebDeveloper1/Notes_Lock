@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="red">
+
+    <title>Notes Lock</title>
+    <link rel="shortcut icon" href="images\logo_icon.jpeg" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="megacontainer" id="newUserPage">
+        <div class="container">
+            <div class="password-box">
+                <div class="password-text">
+                    New Password
+                </div>
+                <div class="input-box">
+                    <input class="input" type="password" value="" name="password" id="newPasswordInput">
+                </div>
+            </div>
+            <div class="password-box">
+                <div class="password-text">
+                    Confirm Password
+                </div>
+                <div class="input-box">
+                    <input class="input" type="password" value="" name="password" id="confirmPasswordInput">
+                </div>
+            </div>
+            <div class="password-box">
+                <div class="password-text">
+                    Backup Question
+                </div>
+                <div class="input-box">
+                    <input class="input" type="text" value="" name="question" id="questionInput">
+                </div>
+            </div>
+            <div class="password-box">
+                <div class="password-text">
+                    Backup Answer
+                </div>
+                <div class="input-box">
+                    <input class="input" type="password" value="" name="answer" id="answerInput">
+                </div>
+            </div>
+            <div class="show-password-box">
+                <div class="check">
+                    <input type="checkbox" name="passwordCheck" id="passwordsCheck" onclick="showPasswords()">
+                </div>
+                <div class="show-password-text">
+                    Show Password
+                </div>
+            </div>
+            <div class="save-password-box button" onclick="savePassword()">
+                <div class="save-password-text">
+                    Save Password
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="megacontainer" id="unlockPage">
+        <div class="container">
+            <div class="password-box">
+                <div class="password-text">
+                    Enter Password
+                </div>
+                <div class="input-box">
+                    <input class="input" type="password" value="" name="password" id="passwordInput"
+                        placeholder="Enter Password">
+                </div>
+            </div>
+            <div class="show-password-box">
+                <div class="check">
+                    <input type="checkbox" name="passwordCheck" id="passwordCheck" onclick="showPassword()">
+                </div>
+                <div class="show-password-text">
+                    Show Password
+                </div>
+            </div>
+            <div class="unlock-button-box button" onclick="unlock()">
+                <div class="unlock-button-text">
+                    Unlock
+                </div>
+            </div>
+            <div class="forget-password-box">
+                <div class="forget-password-text" onclick="forgetPassword()">
+                    Forget Password?
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="megacontainer-notes" id="NotesLockPage">
+        <div class="header">
+            <div class="name">
+                <div class="name-text" id="nameText">
+                    Notes
+                </div>
+            </div>
+            <div class="components">
+                <div class="component-box">
+                    <img src="images/lock_black_icon.png" alt="lock" id="lock" class="component lock" onclick="lock()"
+                    title="Lock Notes">
+                </div>
+                <div class="component-box">
+                    <img src="images\mode_black_icon.png" alt="mode" id="mode" class="component dark-mode"
+                    onclick="changeMode()" title="Change Theme">
+                </div>
+                <div class="component-box">
+                    <img src="images\refresh_black_icon.png" alt="refresh" id="refresh" class="component refresh"
+                    onclick="loadNotes()" title="Refresh Notes">
+                </div>
+            </div>
+        </div>
+        <div class="all-notes" id="allNotes">
+            <!-- <div class="notes-box">
+                <div class="notes-text" id="notesText" contenteditable="false">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum quasi harum iusto hic aliquid et
+                    similique enim sint alias beatae quae dolor ipsa error asperiores pariatur possimus quisquam
+                    deleniti
+                    earum commodi, necessitatibus nisi fugit accusamus facilis ducimus! Neque, aperiam illo! Odio quis
+                    itaque necessitatibus alias saepe facere error vero eligendi earum eaque accusantium laboriosam
+                    impedit
+                    asperiores nisi aliquam, placeat, tenetur culpa. Quibusdam modi esse, numquam enim magnam maxime
+                    expedita eos nostrum nihil, sapiente sit odit fugiat temporibus? Earum animi, facere atque illum,
+                    veniam
+                    aliquam at debitis ipsum, mollitia excepturi magnam! Eum tempore ducimus, sed dicta ab reiciendis
+                    distinctio quisquam nihil.
+                </div>
+                <div class="button-box">
+                    <div class="edit-text-box">
+                        <img src="images\edit_text_icon.svg" alt="" id="edit-text-icon" class="edit-text-icon"
+                            onclick="editNotesText()">
+                    </div>
+                    <div class="delete-text-box">
+                        <img src="images\delete_text_icon.svg" alt="" id="delete-text-icon" class="edit-text-icon"
+                            onclick="deleteNotesText()">
+                    </div>
+                </div>
+            </div> -->
+        </div>
+        <div class="new-text-box" onclick="addNewNote('New Notes', 0, 'true')" title="New Note">
+            <div class="new-text">
+                New Text
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
+
+<!-- "~!@#$%^&*()_+{}:"<>?QWERTYUIOPASDFGHJKLZXCVBNM|}{:><>?":`1234567890-=]\]['/.;.,qwertyuiopasdfghjklzxcvbnm']"} -->

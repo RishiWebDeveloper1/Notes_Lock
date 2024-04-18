@@ -1,0 +1,255 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500&family=Oswald&display=swap');
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding: 5rem;
+    height: 100%;
+}
+
+* {
+    padding: 0px;
+    margin: 0px;
+    font-size: 20px;
+    font-family: 'Oswald';
+    text-decoration: none;
+    list-style: none;
+}
+
+::selection {
+    color: yellow;
+    background-color: black;
+}
+
+* {
+    padding: 0px;
+    margin: 0px;
+    font-size: 20px;
+}
+
+html {
+    background-color: black;
+}
+
+.megacontainer {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 90%;
+    max-width: 600px;
+    height: auto;
+    min-height: 500px;
+    padding: 50px;
+    color: white;
+    background-color: rgb(44, 44, 44);
+    box-shadow: 0 0 10px 10px rgb(76, 76, 76);
+    border-radius: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.password-box {
+    padding: 10px;
+}
+
+.password-text {
+    padding: 5px 0 5px 3px;
+}
+
+/* .input-box {
+    width: 100%;
+} */
+
+.input {
+    width: 100%;
+    height: 25px;
+    padding: 5px 0 5px 12px;
+    font-size: 18px;
+    border-radius: 8px;
+}
+
+.show-password-box {
+    padding: 10px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    align-items: center;
+}
+
+.show-password-text {
+    font-size: 17px;
+}
+
+#passwordsCheck,
+#passwordCheck {
+    width: 20px;
+    height: 20px;
+    margin-right: 15px;
+}
+
+.button {
+    padding: 10px;
+    margin-top: 70px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 255, 0);
+    box-shadow: 0 0 5px black;
+    border-radius: 10px;
+    text-align: center;
+    transition: all 0.35 ease-out;
+}
+
+.save-password-text {
+    font-size: 22px;
+    font-weight: bolder;
+}
+
+.unlock-button-text {
+    font-size: 22px;
+    font-weight: bolder;
+}
+
+.forget-password-box {
+    color: rgb(49, 49, 49);
+    margin-top: 130px;
+}
+
+.forget-password-box:hover {
+    color: blue;
+}
+
+/* ********************** app style *************************** */
+
+.header {
+    width: 100%;
+    height: 50px;
+    background-color: red;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.name {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.name-text {
+    font-size: 30px;
+}
+
+.components {
+    width: 80%;
+    height: 100%;
+    padding-right: 10px;
+    display: flex;
+    justify-content: end;
+    display: flex;
+    align-items: center;
+}
+
+.component-box {
+    padding-right: 10px;
+}
+
+.component {
+    width: 35px;
+    height: 35px;
+
+}
+
+.megacontainer-notes {
+    display: flex;
+    flex-direction: column;
+}
+
+.all-notes {
+    width: 100%;
+    height: auto;
+    margin-top: 60px;
+    margin-bottom: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.notes-box {
+    width: 90%;
+    height: 100px;
+    padding: 10px 0 10px 10px;
+    margin: 10px 0 10px 0;
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.notes-text {
+    width: 80%;
+    height: 100%;
+    overflow: scroll;
+}
+
+.button-box {
+    width: 15%;
+    box-shadow: -6px 0 0 -5px black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.edit-text-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-text-icon {
+    width: 90%;
+    max-width: 40px;
+}
+
+.delete-text-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-text-icon {
+    fill: red;
+    width: 85%;
+    max-width: 40px;
+}
+
+.new-text-box {
+    width: 100px;
+    height: 100px;
+    color: white;
+    background-color: red;
+    border-radius: 1000px;
+    font-size: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    right: 1%;
+    bottom: 10px;
+    margin: 20px;
+}
