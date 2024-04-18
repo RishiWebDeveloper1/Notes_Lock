@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="red">
+
     <title>Notes Lock</title>
+    <link rel="shortcut icon" href="images\logo_icon.jpeg" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -67,7 +70,7 @@
                     Enter Password
                 </div>
                 <div class="input-box">
-                    <input class="input" type="password" value="56115611" name="password" id="passwordInput"
+                    <input class="input" type="password" value="" name="password" id="passwordInput"
                         placeholder="Enter Password">
                 </div>
             </div>
@@ -93,7 +96,21 @@
     </div>
 
     <div class="megacontainer-notes" id="NotesLockPage">
-        <div class="lock" onclick="lock()">lock</div>
+        <div class="header">
+            <div class="name">
+                <div class="name-text" id="nameText">
+                    Notes
+                </div>
+            </div>
+            <div class="components">
+                <img src="images/lock_black_icon.png" alt="lock" id="lock" class="component lock" onclick="lock()"
+                    title="Lock Notes">
+                <img src="images\mode_black_icon.png" alt="mode" id="mode" class="component dark-mode"
+                    onclick="changeMode()" title="Change Theme">
+                <img src="images\refresh_black_icon.png" alt="refresh" id="refresh" class="component refresh"
+                    onclick="loadNotes()" title="Refresh Notes">
+            </div>
+        </div>
         <div class="all-notes" id="allNotes">
             <!-- <div class="notes-box">
                 <div class="notes-text" id="notesText" contenteditable="false">
@@ -121,7 +138,7 @@
                 </div>
             </div> -->
         </div>
-        <div class="new-text-box" onclick="addNewNote('New Notes', 0, 'true')">
+        <div class="new-text-box" onclick="addNewNote('New Notes', 0, 'true')" title="New Note">
             <div class="new-text">
                 New Text
             </div>
@@ -129,6 +146,7 @@
     </div>
 
     <script>
+        document.querySelector('meta[name="theme-color"]').setAttribute('content', 'red');
         // document.addEventListener('contextmenu', (e) => e. preventDefault());
         let newUserPage = document.getElementById("newUserPage");
         let unlockPage = document.getElementById("unlockPage");
@@ -155,7 +173,6 @@
         }
 
         function showPassword() {
-            console.log(passwordCheck.checked)
             if (passwordCheck.checked == true) {
                 passwordInput.type = "text";
             } else {
@@ -164,7 +181,6 @@
         }
 
         function showPasswords() {
-            console.log(passwordsCheck.checked)
             if (passwordsCheck.checked == true) {
                 newPasswordInput.type = "text";
                 confirmPasswordInput.type = "text";
@@ -176,7 +192,16 @@
 
         function savePassword() {
             if (newPasswordInput.value == "") {
-                alert("Password can not be Empty!");
+                alert("New Password can not be Empty!");
+            }
+            else if (confirmPasswordInput.value == "") {
+                alert("Confirm Password can not be Empty!");
+            }
+            else if (questionInput.value == "") {
+                alert("Question can not be Empty!");
+            }
+            else if (answerInput.value == "") {
+                alert("Answer can not be Empty!");
             }
             else if (newPasswordInput.value == confirmPasswordInput.value) {
                 localStorage.setItem("password", newPasswordInput.value);
@@ -213,6 +238,7 @@
                 NotesLockPage.style.display = "flex";
                 passwordInput.value = "";
                 loadNotes();
+                theme();
             }
             else {
                 alert("You Entered Invalid password!");
@@ -220,6 +246,8 @@
         }
 
         function lock() {
+            let html = document.querySelector("html");
+            html.style.backgroundColor = "black";
             var allNotes = document.getElementById('allNotes');
             while (allNotes.firstChild) {
                 allNotes.removeChild(allNotes.firstChild);
@@ -230,10 +258,23 @@
         }
 
         function loadNotes() {
+            var allNotes = document.getElementById('allNotes');
+            while (allNotes.firstChild) {
+                allNotes.removeChild(allNotes.firstChild);
+            }
             arr = getAll();
             for (let key in arr) {
-                addNewNote(arr[key], key)
+                if (arr[key] == "New Notes" || arr[key] == "") {
+                    arr.splice(key, 1);
+                }
             }
+            let setAllNotes = JSON.stringify(arr);
+            localStorage.setItem("allnote", setAllNotes);
+            for (let key in arr) {
+                addNewNote(arr[key], key);
+            }
+            let refresh = document.getElementById("refresh");
+            refresh.style.rotate = "rotate(90deg)"
         }
 
         function editNotesText(i) {
@@ -244,6 +285,7 @@
                 editTextIcon.src = "images/edit_text_icon.svg";
                 editTextIcon.style.width = "100%";
                 notesText.contentEditable = "false";
+                loadNotes();
             }
             else {
                 editTextIcon.src = "images/save_text_icon.svg";
@@ -273,7 +315,6 @@
                     getAllNotes = JSON.parse(getAllNotes);
                     i = getAllNotes.length;
                 }
-
 
                 var notesBox = document.createElement("div");
                 notesBox.classList.add("notes-box");
@@ -318,14 +359,6 @@
 
                 var container = document.getElementById("allNotes");
                 container.appendChild(notesBox);
-
-                // let getAllNotes = localStorage.getItem("allnote");
-                // getAllNotes = JSON.parse(getAllNotes);
-                // console.log(getAllNotes);
-                // getAllNotes.push(text);
-                // console.log(getAllNotes);
-                // let setAllNotes = JSON.stringify(getAllNotes);
-                // localStorage.setItem("allnote", setAllNotes);
             }
             else {
                 var notesBox = document.createElement("div");
@@ -390,22 +423,59 @@
             let getAllNotes = localStorage.getItem("allnote");
             return JSON.parse(getAllNotes);
         }
-        // let arr = ["dfgd", "dsfsdf", "heufhd", "sdfdsfsd"];
-        // arr2 = JSON.stringify(arr);
-        // localStorage.setItem("allnote", arr2);
-        let obj = {
-            "notes1": "lpoghftjhdrdghk",
-            "notes2": "ghffukftcjhfthhg",
-            "notes3": "gtchgfcghv"
+
+        function theme() {
+            let storeMode = localStorage.getItem("currentMode");
+            let nameText = document.getElementById("nameText");
+            let lock = document.getElementById("lock");
+            let mode = document.getElementById("mode");
+            let refresh = document.getElementById("refresh");
+            let html = document.querySelector("html");
+            let notesBox = document.querySelector(".notes-box")
+            if (storeMode == "light") {
+                nameText.style.color = "white";
+                lock.src = "images/lock_white_icon.png";
+                mode.src = "images/mode_white_icon.png";
+                refresh.src = "images/refresh_white_icon.png";
+                html.style.backgroundColor = "white";
+                localStorage.setItem("currentMode", "light");
+            }
+            else {
+                nameText.style.color = "black";
+                lock.src = "images/lock_black_icon.png";
+                mode.src = "images/mode_black_icon.png";
+                refresh.src = "images/refresh_black_icon.png";
+                html.style.backgroundColor = "black";
+                localStorage.setItem("currentMode", "dark");
+            }
         }
-        console.log(obj);
-        obj2 = JSON.stringify(obj);
-        console.log(obj2)
-        obj3 = JSON.parse(obj2)
-        console.log(obj3)
-        localStorage.setItem("allnotes", obj2);
 
-
+        function changeMode() {
+            let storeMode = localStorage.getItem("currentMode");
+            let nameText = document.getElementById("nameText");
+            let lock = document.getElementById("lock");
+            let mode = document.getElementById("mode");
+            let refresh = document.getElementById("refresh");
+            let html = document.querySelector("html");
+            let notesBox = document.querySelector(".notes-box")
+            // console.log(html.style.backgroundColor);
+            if (html.style.backgroundColor == "black") {
+                nameText.style.color = "white";
+                lock.src = "images/lock_white_icon.png";
+                mode.src = "images/mode_white_icon.png";
+                refresh.src = "images/refresh_white_icon.png";
+                html.style.backgroundColor = "white";
+                localStorage.setItem("currentMode", "light");
+            }
+            else if (html.style.backgroundColor == "white") {
+                nameText.style.color = "black";
+                lock.src = "images/lock_black_icon.png";
+                mode.src = "images/mode_black_icon.png";
+                refresh.src = "images/refresh_black_icon.png";
+                html.style.backgroundColor = "black";
+                localStorage.setItem("currentMode", "dark");
+            }
+        }
     </script>
 </body>
 

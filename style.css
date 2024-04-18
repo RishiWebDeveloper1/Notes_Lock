@@ -98,9 +98,10 @@ html {
     margin-top: 70px;
     color: rgb(255, 255, 255);
     background-color: rgb(0, 255, 0);
-    box-shadow: 0 0 5px 5px rgb(0, 255, 187);
+    box-shadow: 0 0 5px black;
     border-radius: 10px;
     text-align: center;
+    transition: all 0.35 ease-out;
 }
 
 .save-password-text {
@@ -124,6 +125,45 @@ html {
 
 /* ********************** app style *************************** */
 
+.header {
+    width: 100%;
+    height: 50px;
+    background-color: red;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.name {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.name-text {
+    font-size: 30px;
+}
+
+.components {
+    width: 80%;
+    height: 100%;
+    padding-right: 10px;
+    display: flex;
+    justify-content: end; 
+    display: flex;
+    align-items: center;
+}
+
+.component {
+    width: 35px;
+    height: 35px;
+    padding-right: 10px;
+}
+
 .megacontainer-notes {
     display: flex;
     flex-direction: column;
@@ -132,6 +172,8 @@ html {
 .all-notes {
     width: 100%;
     height: auto;
+    margin-top: 60px;
+    margin-bottom: 150px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -144,6 +186,7 @@ html {
     margin: 10px 0 10px 0;
     color: black;
     background-color: white;
+    border: 1px solid black;
     border-radius: 10px;
     display: flex;
     flex-wrap: wrap;
