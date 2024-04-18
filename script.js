@@ -170,7 +170,7 @@ function addNewNote(text, i, appendcheck = "false") {
             let arr = ["New Notes"];
             arr = JSON.stringify(arr);
             let getAllNotes = localStorage.setItem(btoa("allnote"), btoa(arr));
-            getAllNotes = atob(ocalStorage.getItem(btoa("allnote")));
+            getAllNotes = atob(localStorage.getItem(btoa("allnote")));
             getAllNotes = JSON.parse(getAllNotes);
             i = getAllNotes.length;
         }
