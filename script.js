@@ -279,8 +279,14 @@ function setAll(noteText = "", i) {
 }
 
 function getAll() {
-    let getAllNotes = atob(localStorage.getItem(btoa("allnote")));
-    return JSON.parse(getAllNotes);
+    if (localStorage.getItem(btoa("allnote")) == null) {
+        let k = 0;
+    }
+    else {
+        let getAllNotes = atob(localStorage.getItem(btoa("allnote")));
+        console.log(localStorage.getItem(btoa("allnote")) == null);
+        return JSON.parse(getAllNotes);
+    }
 }
 
 function theme() {
