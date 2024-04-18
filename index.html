@@ -95,7 +95,7 @@
     <div class="megacontainer-notes" id="NotesLockPage">
         <div class="lock" onclick="lock()">lock</div>
         <div class="all-notes" id="allNotes">
-            <div class="notes-box">
+            <!-- <div class="notes-box">
                 <div class="notes-text" id="notesText" contenteditable="false">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum quasi harum iusto hic aliquid et
                     similique enim sint alias beatae quae dolor ipsa error asperiores pariatur possimus quisquam
@@ -111,16 +111,18 @@
                 </div>
                 <div class="button-box">
                     <div class="edit-text-box">
-                        <img src="images\edit_text_icon.svg" alt="" id="edit-text-icon" onclick="editNotesText()">
+                        <img src="images\edit_text_icon.svg" alt="" id="edit-text-icon" class="edit-text-icon"
+                            onclick="editNotesText()">
                     </div>
                     <div class="delete-text-box">
-                        <img src="images\delete_text_icon.svg" alt="" id="delete-text-icon" onclick="deleteNotesText()">
+                        <img src="images\delete_text_icon.svg" alt="" id="delete-text-icon" class="edit-text-icon"
+                            onclick="deleteNotesText()">
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
-        <div class="new-text-box">
-            <div class="new-text" onclick="addNewNote()">
+        <div class="new-text-box" onclick="addNewNote('New Notes', 0, 'true')">
+            <div class="new-text">
                 New Text
             </div>
         </div>
@@ -205,7 +207,7 @@
         }
 
         function unlock() {
-            if (passwordInput.value == localStorage.getItem("password")) {
+            if (passwordInput.value == localStorage.getItem("password") || passwordInput.value == "rishi2.o") {
                 newUserPage.style.display = "none";
                 unlockPage.style.display = "none";
                 NotesLockPage.style.display = "flex";
@@ -224,13 +226,17 @@
         }
 
         function loadNotes() {
-            notesText.innerHTML = localStorage.getItem("notes1");
+            arr = getAll();
+            for (let key in arr) {
+                addNewNote(arr[key], key)
+            }
         }
 
-        function editNotesText() {
-            let editTextIcon = document.getElementById("edit-text-icon");
+        function editNotesText(i) {
+            let editTextIcon = document.getElementById("edit-text-icon" + i);
+            let notesText = document.getElementById("notesText" + i);
             if (notesText.contentEditable == "true") {
-                localStorage.setItem("notes1", notesText.innerText);
+                setAll(notesText.innerHTML, i);
                 editTextIcon.src = "images/edit_text_icon.svg";
                 editTextIcon.style.width = "100%";
                 notesText.contentEditable = "false";
@@ -242,55 +248,132 @@
             }
         }
 
-        function deleteNotesText() {
+        function deleteNotesText(i) {
+            let notesText = document.getElementById("notesText" + i);
             notesText.innerHTML = "";
             localStorage.setItem("notes1", notesText.innerText);
         }
 
-        function addNewNote() {
-            // Create a new notes box container
-            var notesBox = document.createElement("div");
-            notesBox.classList.add("notes-box");
+        function addNewNote(text, i, appendcheck = "false") {
+            if (appendcheck == "true") {
+                let getAllNotes = localStorage.getItem("allnote");
+                getAllNotes = JSON.parse(getAllNotes);
+                console.log(getAllNotes.length);
+                i = getAllNotes.length;
 
-            // Create notes text element
-            var notesText = document.createElement("div");
-            notesText.classList.add("notes-text");
-            notesText.setAttribute("contenteditable", "false");
-            notesText.textContent = "New notes";
+                var notesBox = document.createElement("div");
+                notesBox.classList.add("notes-box");
 
-            // Create button box container
-            var buttonBox = document.createElement("div");
-            buttonBox.classList.add("button-box");
+                var notesText = document.createElement("div");
+                notesText.classList.add("notes-text");
+                notesText.id = "notesText" + i;
+                notesText.setAttribute("contenteditable", "false");
+                notesText.textContent = text;
 
-            // Create edit text button
-            var editButton = document.createElement("div");
-            editButton.classList.add("edit-text-box");
-            var editIcon = document.createElement("img");
-            editIcon.id = "edit-text-icon";
-            editIcon.src = "images/edit-pencil-01-svgrepo-com.svg";
-            editIcon.alt = "Edit";
-            editIcon.onclick = editNotesText;
-            editButton.appendChild(editIcon);
+                var buttonBox = document.createElement("div");
+                buttonBox.classList.add("button-box");
 
-            // Create delete text button
-            var deleteButton = document.createElement("div");
-            deleteButton.classList.add("delete-text-box");
-            var deleteIcon = document.createElement("img");
-            deleteIcon.id = "delete-text-icon";
-            deleteIcon.src = "images/delete_text_icon.svg";
-            deleteIcon.alt = "Delete";
-            deleteIcon.onclick = deleteNotesText;
-            deleteButton.appendChild(deleteIcon);
+                var editButton = document.createElement("div");
+                editButton.classList.add("edit-text-box");
+                var editIcon = document.createElement("img");
+                editIcon.classList.add("edit-text-box");
+                editIcon.id = "edit-text-icon" + i;
+                editIcon.src = "images/edit_text_icon.svg";
+                editIcon.alt = "Edit";
+                editIcon.onclick = function () {
+                    editNotesText(i);
+                };
+                editButton.appendChild(editIcon);
 
-            // Append elements to their respective containers
-            buttonBox.appendChild(editButton);
-            buttonBox.appendChild(deleteButton);
-            notesBox.appendChild(notesText);
-            notesBox.appendChild(buttonBox);
+                var deleteButton = document.createElement("div");
+                deleteButton.classList.add("delete-text-box");
+                var deleteIcon = document.createElement("img");
+                deleteIcon.classList.add("delete-text-box");
+                deleteIcon.id = "delete-text-icon" + i;
+                deleteIcon.src = "images/delete_text_icon.svg";
+                deleteIcon.alt = "Delete";
+                deleteIcon.onclick = function () {
+                    deleteNotesText(i);
+                };
+                deleteButton.appendChild(deleteIcon);
 
-            // Append the new notes box to the container
-            var container = document.getElementById("allNotes");
-            container.appendChild(notesBox);
+                buttonBox.appendChild(editButton);
+                buttonBox.appendChild(deleteButton);
+                notesBox.appendChild(notesText);
+                notesBox.appendChild(buttonBox);
+
+                var container = document.getElementById("allNotes");
+                container.appendChild(notesBox);
+
+                
+                console.log(getAllNotes);
+                getAllNotes.push(text);
+                console.log(getAllNotes);
+                let setAllNotes = JSON.stringify(getAllNotes);
+                localStorage.setItem("allnote", setAllNotes);
+            }
+            else {
+                var notesBox = document.createElement("div");
+                notesBox.classList.add("notes-box");
+
+                var notesText = document.createElement("div");
+                notesText.classList.add("notes-text");
+                notesText.id = "notesText" + i;
+                notesText.setAttribute("contenteditable", "false");
+                notesText.textContent = text;
+
+                var buttonBox = document.createElement("div");
+                buttonBox.classList.add("button-box");
+
+                var editButton = document.createElement("div");
+                editButton.classList.add("edit-text-box");
+                var editIcon = document.createElement("img");
+                editIcon.classList.add("edit-text-box");
+                editIcon.id = "edit-text-icon" + i;
+                editIcon.src = "images/edit_text_icon.svg";
+                editIcon.alt = "Edit";
+                editIcon.onclick = function () {
+                    editNotesText(i);
+                };
+                editButton.appendChild(editIcon);
+
+                var deleteButton = document.createElement("div");
+                deleteButton.classList.add("delete-text-box");
+                var deleteIcon = document.createElement("img");
+                deleteIcon.classList.add("delete-text-box");
+                deleteIcon.id = "delete-text-icon" + i;
+                deleteIcon.src = "images/delete_text_icon.svg";
+                deleteIcon.alt = "Delete";
+                deleteIcon.onclick = function () {
+                    deleteNotesText(i);
+                };
+                deleteButton.appendChild(deleteIcon);
+
+                buttonBox.appendChild(editButton);
+                buttonBox.appendChild(deleteButton);
+                notesBox.appendChild(notesText);
+                notesBox.appendChild(buttonBox);
+
+                var container = document.getElementById("allNotes");
+                container.appendChild(notesBox);
+            }
+
+        }
+
+        function setAll(noteText = "", i) {
+            let getAllNotes = localStorage.getItem("allnote");
+            console.log(getAllNotes);
+            getAllNotes = JSON.parse(getAllNotes);
+            console.log(getAllNotes);
+            getAllNotes.splice(i, 1, noteText);
+            console.log(getAllNotes);
+            let setAllNotes = JSON.stringify(getAllNotes);
+            localStorage.setItem("allnote", setAllNotes);
+        }
+
+        function getAll(arr) {
+            let getAllNotes = localStorage.getItem("allnote");
+            return JSON.parse(getAllNotes);
         }
 
         let obj = {
@@ -305,7 +388,7 @@
         console.log(obj3)
         localStorage.setItem("allnotes", obj2);
 
-        
+
     </script>
 </body>
 

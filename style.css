@@ -9,7 +9,7 @@ html {
 
 * {
     padding: 0px;
-    margin:  0px;
+    margin: 0px;
     font-size: 20px;
     font-family: 'Oswald';
     text-decoration: none;
@@ -23,7 +23,7 @@ html {
 
 * {
     padding: 0px;
-    margin:  0px;
+    margin: 0px;
     font-size: 20px;
 }
 
@@ -86,7 +86,8 @@ html {
     font-size: 17px;
 }
 
-#passwordsCheck, #passwordCheck{
+#passwordsCheck,
+#passwordCheck {
     width: 20px;
     height: 20px;
     margin-right: 15px;
@@ -171,7 +172,7 @@ html {
     align-items: center;
 }
 
-#edit-text-icon {
+.edit-text-icon {
     width: 90%;
     max-width: 40px;
 }
@@ -183,8 +184,8 @@ html {
     align-items: center;
 }
 
-#delete-text-icon {
-    fill: red; 
+.delete-text-icon {
+    fill: red;
     width: 85%;
     max-width: 40px;
 }
