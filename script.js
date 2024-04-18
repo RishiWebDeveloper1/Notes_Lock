@@ -12,6 +12,7 @@ var passwordInput = document.getElementById("passwordInput");
 let passwordCheck = document.getElementById("passwordCheck");
 let notesText = document.getElementById("notesText");
 
+console.log(localStorage.getItem(btoa("password")));
 if (localStorage.getItem(btoa("password")) == null) {
     newUserPage.style.display = "flex";
     unlockPage.style.display = "none";
@@ -279,12 +280,13 @@ function setAll(noteText = "", i) {
 }
 
 function getAll() {
-    if (localStorage.getItem(btoa("allnote")) == null) {
+    console.log(atob(localStorage.getItem(btoa("allnote"))) == "undefined")
+    if (localStorage.getItem(btoa("allnote")) == null || atob(localStorage.getItem(btoa("allnote"))) == "undefined") {
         let k = 0;
     }
     else {
         let getAllNotes = atob(localStorage.getItem(btoa("allnote")));
-        console.log(localStorage.getItem(btoa("allnote")) == null);
+        console.log(getAllNotes)
         return JSON.parse(getAllNotes);
     }
 }
