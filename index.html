@@ -220,6 +220,10 @@
         }
 
         function lock() {
+            var allNotes = document.getElementById('allNotes');
+            while (allNotes.firstChild) {
+                allNotes.removeChild(allNotes.firstChild);
+            }
             newUserPage.style.display = "none";
             unlockPage.style.display = "flex";
             NotesLockPage.style.display = "none";
@@ -256,10 +260,20 @@
 
         function addNewNote(text, i, appendcheck = "false") {
             if (appendcheck == "true") {
-                let getAllNotes = localStorage.getItem("allnote");
-                getAllNotes = JSON.parse(getAllNotes);
-                console.log(getAllNotes.length);
-                i = getAllNotes.length;
+                try {
+                    let getAllNotes = localStorage.getItem("allnote");
+                    getAllNotes = JSON.parse(getAllNotes);
+                    i = getAllNotes.length;
+                }
+                catch {
+                    let arr = ["New Notes"];
+                    arr = JSON.stringify(arr);
+                    let getAllNotes = localStorage.setItem("allnote", arr);
+                    getAllNotes = localStorage.getItem("allnote");
+                    getAllNotes = JSON.parse(getAllNotes);
+                    i = getAllNotes.length;
+                }
+
 
                 var notesBox = document.createElement("div");
                 notesBox.classList.add("notes-box");
@@ -276,7 +290,7 @@
                 var editButton = document.createElement("div");
                 editButton.classList.add("edit-text-box");
                 var editIcon = document.createElement("img");
-                editIcon.classList.add("edit-text-box");
+                editIcon.classList.add("edit-text-icon");
                 editIcon.id = "edit-text-icon" + i;
                 editIcon.src = "images/edit_text_icon.svg";
                 editIcon.alt = "Edit";
@@ -288,7 +302,7 @@
                 var deleteButton = document.createElement("div");
                 deleteButton.classList.add("delete-text-box");
                 var deleteIcon = document.createElement("img");
-                deleteIcon.classList.add("delete-text-box");
+                deleteIcon.classList.add("delete-text-icon");
                 deleteIcon.id = "delete-text-icon" + i;
                 deleteIcon.src = "images/delete_text_icon.svg";
                 deleteIcon.alt = "Delete";
@@ -305,12 +319,13 @@
                 var container = document.getElementById("allNotes");
                 container.appendChild(notesBox);
 
-                
-                console.log(getAllNotes);
-                getAllNotes.push(text);
-                console.log(getAllNotes);
-                let setAllNotes = JSON.stringify(getAllNotes);
-                localStorage.setItem("allnote", setAllNotes);
+                // let getAllNotes = localStorage.getItem("allnote");
+                // getAllNotes = JSON.parse(getAllNotes);
+                // console.log(getAllNotes);
+                // getAllNotes.push(text);
+                // console.log(getAllNotes);
+                // let setAllNotes = JSON.stringify(getAllNotes);
+                // localStorage.setItem("allnote", setAllNotes);
             }
             else {
                 var notesBox = document.createElement("div");
@@ -328,7 +343,7 @@
                 var editButton = document.createElement("div");
                 editButton.classList.add("edit-text-box");
                 var editIcon = document.createElement("img");
-                editIcon.classList.add("edit-text-box");
+                editIcon.classList.add("edit-text-icon");
                 editIcon.id = "edit-text-icon" + i;
                 editIcon.src = "images/edit_text_icon.svg";
                 editIcon.alt = "Edit";
@@ -340,7 +355,7 @@
                 var deleteButton = document.createElement("div");
                 deleteButton.classList.add("delete-text-box");
                 var deleteIcon = document.createElement("img");
-                deleteIcon.classList.add("delete-text-box");
+                deleteIcon.classList.add("delete-text-icon");
                 deleteIcon.id = "delete-text-icon" + i;
                 deleteIcon.src = "images/delete_text_icon.svg";
                 deleteIcon.alt = "Delete";
@@ -375,7 +390,9 @@
             let getAllNotes = localStorage.getItem("allnote");
             return JSON.parse(getAllNotes);
         }
-
+        // let arr = ["dfgd", "dsfsdf", "heufhd", "sdfdsfsd"];
+        // arr2 = JSON.stringify(arr);
+        // localStorage.setItem("allnote", arr2);
         let obj = {
             "notes1": "lpoghftjhdrdghk",
             "notes2": "ghffukftcjhfthhg",
