@@ -23,12 +23,8 @@ def open_login_page():
     entry_login_password.grid(row=2, column=1, pady=5)
 
     def authenticate_user():
-        # Add authentication logic here
         email = entry_login_email.get()
         password = entry_login_password.get()
-
-        # You need to add your authentication logic here
-        # Compare entered email and password with your stored data, or use the in-memory user_records list
 
         # For demonstration purposes, let's show a message box indicating successful login
         messagebox.showinfo("Success", "Login successful")
