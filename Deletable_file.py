@@ -25,11 +25,7 @@ def open_login_page():
     def authenticate_user():
         email = entry_login_email.get()
         password = entry_login_password.get()
-
-        # For demonstration purposes, let's show a message box indicating successful login
         messagebox.showinfo("Success", "Login successful")
-
-        # Close the login window after successful login
         login_window.destroy()
 
     btn_login = Button(login_window, text="Login", command=authenticate_user)
