@@ -1,7 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
 
-# In-memory user records list
 user_records = []
 
 def open_login_page():
